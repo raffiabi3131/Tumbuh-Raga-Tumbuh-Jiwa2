@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tumbuh Raga, Tumbuh Jiwa: edukasi stunting untuk orang tua dan masyarakat</title>
+<style>
+:root{--bg:#FDF8F0;--ink:#1F2D27;--muted:#5A6760;--g:#2E7D5B;--gd:#1E4D3A;--o:#B8660F;--ob:#E08A2E;--soft:#E4F0E9;--card:#FFFFFF;--warn:#FFF0D6;--line:#D9E3DC;--on-g:#FFFFFF;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13201A;--ink:#EDF3EF;--muted:#A8B6AF;--g:#5DBB8E;--gd:#8FD6B2;--o:#F0A14D;--ob:#F0A14D;--soft:#203A2E;--card:#1B2A23;--warn:#3A2E17;--line:#2D4237;--on-g:#10261C}}
+:root[data-theme="dark"]{--bg:#13201A;--ink:#EDF3EF;--muted:#A8B6AF;--g:#5DBB8E;--gd:#8FD6B2;--o:#F0A14D;--ob:#F0A14D;--soft:#203A2E;--card:#1B2A23;--warn:#3A2E17;--line:#2D4237;--on-g:#10261C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.2;margin:0 0 .5em;color:var(--gd)}
+h1{font-size:clamp(2.2rem,8vw,3.6rem)}h2{font-size:1.9rem}h3{font-size:1.2rem}
+p{margin:0 0 1em;max-width:62ch}
+a{color:var(--g)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.hero{padding:48px 0 40px;border:0}
+.hero svg{width:96px;height:96px;display:block;margin-bottom:20px}
+.lead{font-size:1.15rem;color:var(--muted)}
+nav{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:20px;font-size:.95rem}
+nav a{text-decoration:none;border-bottom:2px solid var(--line);padding-bottom:2px}
+nav a:hover{border-color:var(--ob)}
+.ref{font-size:.75em;color:var(--g);font-weight:600;vertical-align:super;margin-left:1px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--ob);outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+.note{background:var(--warn);border-left:5px solid var(--ob);padding:16px 18px;border-radius:0 10px 10px 0;margin:20px 0}
+.note b{display:block;margin-bottom:4px}
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.seg button{background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px}
+.seg button[aria-pressed="true"]{background:var(--g);border-color:var(--g);color:var(--on-g);font-weight:600}
+/* chart */
+.chart{display:flex;gap:28px;align-items:flex-end;height:230px;padding:0 8px;border-bottom:2px solid var(--line);margin:8px 0 14px}
+.bar{flex:1;max-width:150px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;background:none;border:0;padding:0}
+.bar i{display:block;width:100%;border-radius:8px 8px 0 0;background:var(--line);transition:height .6s ease,background .2s}
+.bar[aria-pressed="true"] i{background:var(--g)}
+.bar b{font-family:Georgia,serif;font-size:1.6rem;color:var(--gd);margin-bottom:4px}
+.axis{display:flex;gap:28px;padding:0 8px}
+.axis span{flex:1;max-width:150px;text-align:center;color:var(--muted);font-size:.9rem}
+/* compare */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two>div{border-radius:10px;padding:16px;background:var(--card);border:1.5px solid var(--line)}
+.two>div.on{border-color:var(--ob);background:var(--warn)}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+/* growth */
+.grow{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:center}
+@media(max-width:560px){.grow{grid-template-columns:1fr}}
+.grow svg{width:150px;height:150px}
+.grow .st{opacity:0;transform-origin:100px 170px;transform:scale(.85);transition:opacity .4s,transform .4s}
+.grow .st.on{opacity:1;transform:scale(1)}
+input[type=range]{width:100%;accent-color:var(--g);margin:6px 0}
+.ticks{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+@media(max-width:560px){.cols{grid-template-columns:1fr}}
+.cols ul{margin:8px 0 0;padding-left:20px}
+/* checks */
+.chk{list-style:none;padding:0;margin:0 0 12px}
+.chk label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.chk input{width:22px;height:22px;accent-color:var(--g);margin-top:3px;flex:none}
+.prog{font-weight:600;color:var(--gd)}
+/* myth */
+.myths{display:grid;gap:10px}
+.myth{text-align:left;width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:14px 18px}
+.myth strong{font-family:Georgia,serif;font-size:1.1rem}
+.myth .fact{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);color:var(--ink)}
+.myth[aria-expanded="true"]{border-color:var(--g);background:var(--soft)}
+.myth[aria-expanded="true"] .fact{display:block}
+.hint{color:var(--muted);font-size:.9rem}
+details{border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--card)}
+summary{cursor:pointer;font-weight:600}
+.refs{font-size:.88rem;padding-left:0;list-style:none;color:var(--muted)}
+.refs li{margin:8px 0}
+.help{background:var(--g);color:var(--on-g);border-radius:14px;padding:28px;margin:8px 0 28px}
+.help h2{color:inherit}
+footer{padding:0 0 40px;color:var(--muted);font-size:.9rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header class="hero">
+<svg viewBox="0 0 96 96" role="img" aria-label="Logo: tunas dengan dua daun dan kepala anak di tengah"><circle cx="48" cy="48" r="46" fill="#2E7D5B"/><path d="M48 80V58" stroke="#FDF8F0" stroke-width="4" stroke-linecap="round"/><path d="M48 60C33 61 22 49 23 34c15 0 25 10 25 26Z" fill="#FDF8F0"/><path d="M48 60c15 1 26-11 25-26-15 0-25 10-25 26Z" fill="#E08A2E"/><circle cx="48" cy="36" r="7" fill="#F6C177"/></svg>
+<h1>Tumbuh Raga, Tumbuh Jiwa</h1>
+<p class="lead">Edukasi stunting untuk orang tua dan masyarakat: dari gizi dan sanitasi sampai kesehatan jiwa ibu, kasih sayang, dan stimulasi sejak dini.</p>
+<nav aria-label="Isi halaman">
+<a href="#data">Data</a><a href="#apa">Apa itu stunting</a><a href="#sebab">Penyebab</a><a href="#dampak">Dampak</a><a href="#cegah">1.000 hari pertama</a><a href="#jiwa">Mental ibu</a><a href="#stimulasi">Stimulasi</a><a href="#mitos">Mitos dan fakta</a>
+</nav>
+</header>
+
+<section id="data">
+<h2>Angkanya menurun, tetapi belum selesai</h2>
+<p>Prevalensi stunting balita nasional turun dari 21,5% (2023) menjadi 19,8% (2024)<span class="ref">[10]</span>. Ketuk batang untuk melihat detailnya.</p>
+<div class="chart" role="group" aria-label="Prevalensi stunting balita di Indonesia, SSGI">
+<button class="bar" data-v="21.5" aria-pressed="false"><b>21,5%</b><i style="height:0"></i></button>
+<button class="bar" data-v="19.8" aria-pressed="true"><b>19,8%</b><i style="height:0"></i></button>
+</div>
+<div class="axis"><span>2023</span><span>2024</span></div>
+<p class="card" id="bardesc" aria-live="polite" style="margin-top:16px"></p>
+<div class="note"><b>Siapa yang paling terdampak?</b>Kelompok ekonomi paling miskin (kuintil 1) punya angka tertinggi, yaitu 29,8%<span class="ref">[11]</span>. Kenaikan prevalensi juga terlihat pada balita usia 12–36 bulan<span class="ref">[11]</span>.</div>
+<p class="hint">Stunting sering disebut cerminan kesejahteraan anak dan ketimpangan sosial<span class="ref">[1]</span>. Angka bisa diperbarui, jadi cek data terbaru di laman BKPK Kemenkes.</p>
+</section>
+
+<section id="apa">
+<h2>Apa itu stunting?</h2>
+<p>Stunting adalah kondisi ketika panjang atau tinggi badan anak jauh di bawah standar WHO untuk usianya<span class="ref">[1]</span>. Pilih satu untuk melihat perbedaannya.</p>
+<div class="seg"><button data-c="0" aria-pressed="true">Pendek biasa</button><button data-c="1" aria-pressed="false">Stunting</button></div>
+<div class="two" id="cmp">
+<div class="on"><h3>Pendek biasa</h3>Anak sehat dan tumbuh sesuai kurva pertumbuhannya.</div>
+<div><h3>Stunting</h3>Pertumbuhan tertinggal karena masalah gizi dan kesehatan yang berlangsung lama.</div>
+</div>
+<h3 style="margin-top:28px">Kapan mulai terjadi?</h3>
+<p>Pertumbuhan bisa mulai tersendat sejak dalam kandungan dan berlanjut sampai kira-kira usia 2 tahun<span class="ref">[1]</span>.</p>
+<div class="note"><b>Perlu diwaspadai</b>Stunting sering tidak disadari di lingkungan yang menganggap tubuh pendek itu biasa<span class="ref">[1]</span>. Ukur panjang atau tinggi badan anak secara rutin, bukan hanya menimbang berat badan.</div>
+</section>
+
+<section id="sebab">
+<h2>Penyebabnya tidak satu</h2>
+<p>Stunting muncul dari gabungan faktor rumah tangga, lingkungan, ekonomi, dan budaya<span class="ref">[1]</span>. Pilih faktor untuk melihat contohnya.</p>
+<div class="seg" id="tabs"></div>
+<div class="card" id="tabbody" aria-live="polite"></div>
+<p style="margin-top:16px" class="hint">Karena penyebabnya banyak, pencegahannya pun butuh kerja sama keluarga, masyarakat, dan layanan kesehatan.</p>
+</section>
+
+<section id="dampak">
+<h2>Dampak stunting</h2>
+<div class="cols" style="margin-top:0">
+<div class="card"><h3>Fisik</h3>Pertumbuhan tubuh anak tertinggal dari anak seusianya.</div>
+<div class="card"><h3>Perkembangan</h3>Stunting dikaitkan dengan gangguan motorik, mental, dan kecerdasan<span class="ref">[7]</span>.</div>
+</div>
+<div class="card" style="margin-top:12px"><h3>Psikologis</h3>Studi multi-negara mengaitkan stunting dini dengan kesejahteraan psikologis yang kurang baik<span class="ref">[5]</span>.</div>
+<div class="note"><b>Catatan jujur</b>Hubungan stunting dengan kecerdasan masih diteliti. Satu meta-analisis menunjukkan hasil yang belum seragam<span class="ref">[6]</span>, dan studi lain menegaskan hubungannya belum tentu sebab-akibat langsung<span class="ref">[5]</span>. Yang pasti, perhatian dan stimulasi sejak dini bermanfaat bagi semua anak.</div>
+</section>
+
+<section id="cegah">
+<h2>1.000 hari pertama kehidupan</h2>
+<p>Pencegahan berfokus pada masa dari kehamilan sampai anak sekitar 2 tahun<span class="ref">[1]</span>. Geser untuk melihat tiap tahap, dan lihat tunasnya tumbuh.</p>
+<div class="grow">
+<svg viewBox="0 0 200 200" role="img" aria-label="Ilustrasi tunas yang tumbuh sesuai tahap">
+<ellipse cx="100" cy="176" rx="60" ry="9" fill="var(--line)"/>
+<g class="st on" id="s0"><path d="M100 172V148" stroke="var(--g)" stroke-width="6" stroke-linecap="round"/><circle cx="100" cy="144" r="8" fill="var(--g)"/></g>
+<g class="st" id="s1"><path d="M100 172V120" stroke="var(--g)" stroke-width="6" stroke-linecap="round"/><path d="M100 122C72 124 50 102 52 74c28 0 48 20 48 48Z" fill="var(--g)"/></g>
+<g class="st" id="s2"><path d="M100 172V112" stroke="var(--g)" stroke-width="6" stroke-linecap="round"/><path d="M100 114C72 116 50 94 52 66c28 0 48 20 48 48Z" fill="var(--g)"/><path d="M100 114c28 2 50-20 48-48-28 0-48 20-48 48Z" fill="var(--ob)"/><circle cx="100" cy="72" r="13" fill="#F6C177"/></g>
+</svg>
+<div>
+<input type="range" id="stage" min="0" max="2" step="1" value="0" aria-label="Tahap 1.000 hari pertama" aria-valuetext="Hamil">
+<div class="ticks"><span>Hamil</span><span>0–6 bulan</span><span>6–24 bulan</span></div>
+<div class="card" id="stagebody" style="margin-top:12px" aria-live="polite"></div>
+</div>
+</div>
+<p style="margin-top:28px">Upaya yang efektif menggabungkan dua jalur:</p>
+<div class="cols" style="margin-top:0">
+<div class="card"><h3>Jalur langsung</h3><ul>
+<li>Periksa kehamilan rutin dan bersalin dengan tenaga kesehatan<span class="ref">[2]</span></li>
+<li>Cegah anemia dan kurang gizi pada ibu hamil<span class="ref">[3]</span></li>
+<li>ASI eksklusif dan pemberian makan yang tepat<span class="ref">[3]</span></li>
+<li>Gizi disertai stimulasi anak<span class="ref">[5]</span></li></ul></div>
+<div class="card"><h3>Jalur tidak langsung</h3><ul>
+<li>Perbaiki sanitasi dan akses air bersih<span class="ref">[2]</span></li>
+<li>Perkuat ekonomi dan pendidikan keluarga<span class="ref">[2][4]</span></li>
+<li>Libatkan banyak sektor dan komunitas<span class="ref">[4]</span></li></ul></div>
+</div>
+<div class="note"><b>Saran umum (bukan temuan dari artikel rujukan)</b>Variasikan makanan anak: protein hewani atau nabati, sayur, dan buah. Biasakan cuci tangan pakai sabun. Konsultasikan menu dan suplemen ke bidan, dokter, atau ahli gizi.</div>
+</section>
+
+<section id="jiwa">
+<h2>Mental ibu dan pengasuhan</h2>
+<p>Kesehatan mental ibu termasuk faktor psikososial yang ikut dikaji dalam penelitian stunting<span class="ref">[9]</span>. Buktinya masih berkembang, tetapi merawat diri sendiri bukan sikap egois.</p>
+<ul>
+<li>Kenali tanda lelah berat: sulit tidur, mudah menangis, tidak bersemangat, atau cemas berlebihan.</li>
+<li>Ceritakan ke pasangan, keluarga, kader, atau bidan.</li>
+<li>Bagi tugas pengasuhan dengan ayah dan anggota keluarga.</li>
+<li>Jika perasaan berat berlangsung lama, cari bantuan profesional (psikolog, dokter, puskesmas).</li>
+</ul>
+<div class="note"><b>Pengasuhan yang responsif</b>Tinjauan literatur menyimpulkan bahwa pengasuhan yang demokratis dan responsif berkontribusi pada pencegahan stunting, sedangkan pengasuhan yang kurang tepat meningkatkan risiko<span class="ref">[8]</span>. Pola asuh juga berhubungan dengan stunting balita di Indonesia<span class="ref">[7]</span>.</div>
+<p class="hint">Ibu bukan satu-satunya yang bertanggung jawab. Mencegah stunting adalah kerja bersama.</p>
+</section>
+
+<section id="stimulasi">
+<h2>Stimulasi dan cek tumbuh kembang</h2>
+<p>Stimulasi kognitif pada anak dapat memberi manfaat jangka panjang, dan intervensi gizi yang digabung stimulasi dilaporkan efektif<span class="ref">[5]</span>. Centang kegiatan yang sudah kamu lakukan hari ini (saran praktis umum, sesuaikan dengan usia anak).</p>
+<ul class="chk" id="chk1">
+<li><label><input type="checkbox">Ajak bicara, bernyanyi, dan baca buku bergambar</label></li>
+<li><label><input type="checkbox">Tanggapi ocehan dan tangisan anak dengan hangat</label></li>
+<li><label><input type="checkbox">Bermain bersama, misalnya cilukba atau menyusun balok</label></li>
+<li><label><input type="checkbox">Makan bersama dalam suasana santai</label></li>
+</ul>
+<p class="prog" id="p1" aria-live="polite"></p>
+<h3 style="margin-top:28px">Pengingat rutin</h3>
+<ul class="chk" id="chk2">
+<li><label><input type="checkbox">Ukur tinggi rutin</label></li>
+<li><label><input type="checkbox">Makan beragam</label></li>
+<li><label><input type="checkbox">Bermain bersama setiap hari</label></li>
+<li><label><input type="checkbox">Ibu cukup istirahat</label></li>
+</ul>
+<p class="prog" id="p2" aria-live="polite"></p>
+<p>Ukur panjang atau tinggi badan anak secara rutin, tidak hanya berat badan, karena stunting sulit dikenali dengan mata<span class="ref">[1]</span>. Bawa anak ke posyandu atau puskesmas, dan konsultasikan bila anak tampak jauh lebih pendek dari sebayanya, berat badan tidak naik, atau perkembangannya terlambat.</p>
+</section>
+
+<section id="mitos">
+<h2>Mitos dan fakta</h2>
+<p>Tinjauan sistematis di Indonesia menekankan perlunya strategi lintas sektor dan berbasis komunitas<span class="ref">[4]</span>. Ketuk tiap anggapan untuk melihat faktanya.</p>
+<div class="myths" id="myths"></div>
+<p class="hint" style="margin-top:16px">Peran bersama: keluarga (ayah, ibu, kakek-nenek saling mendukung), masyarakat (kader, posyandu, dan tetangga saling mengingatkan), serta layanan dan pemerintah (akses kesehatan, sanitasi, dan dukungan bagi keluarga miskin)<span class="ref">[2][11]</span>.</p>
+</section>
+
+<section id="bantuan" style="border:0;padding-bottom:0">
+<div class="help"><h2>Butuh bantuan?</h2><p style="margin:0">Hubungi posyandu, puskesmas, atau tenaga kesehatan terdekat. Konsultasikan setiap kekhawatiran tentang tumbuh kembang anak sebelum menunggu lebih lama.</p></div>
+<details><summary>Referensi</summary>
+<ol class="refs" style="list-style:none;padding:0;margin-top:12px">
+<li>[1] de Onis, M., &amp; Branca, F. (2016). Childhood stunting: a global perspective. <i>Maternal &amp; Child Nutrition</i>.</li>
+<li>[2] Vaivada, T., dkk. (2020). Stunting in childhood: an overview of global burden, trends, determinants, and drivers of decline. (PMC7487433)</li>
+<li>[3] Ariyanti, R., dkk. (2025). Maternal factors as determinants of stunting in children under five years old: a systematic review. <i>Panakeia</i>. DOI: 10.30872/panakeia.v2i1.3075</li>
+<li>[4] Subratha, H. F. A., &amp; Agustia, K. T. S. Determinants of stunting among toddlers: a systematic literature review. <i>Warmadewa Medical Journal</i>.</li>
+<li>[5] Studi <i>Frontiers in Public Health</i> (2023). DOI: 10.3389/fpubh.2023.1087349</li>
+<li>[6] Childhood stunting and cognitive development: a meta-analysis. (PMC12467485)</li>
+<li>[7] Fitroningtyas, E. A. (2021). Parenting patterns as a determinant of stunting in toddlers under five years in Indonesia. <i>KESANS</i>.</li>
+<li>[8] Tinjauan literatur hubungan pola asuh ibu dan stunting. <i>Unified Health Critical Research</i> (UIN Alauddin Makassar).</li>
+<li>[9] A scoping review of parental determinants of stunting. E-journal Undip.</li>
+<li>[10] Kemenkes RI, BKPK (2025). SSGI 2024: Prevalensi stunting nasional turun menjadi 19,8%.</li>
+<li>[11] Kemenko PMK (2025). Prevalensi stunting tahun 2024 turun jadi 19,8 persen.</li>
+</ol></details>
+</section>
+</main>
+<footer class="wrap"><p style="margin-top:28px">Situs ini media edukasi dan bukan pengganti pemeriksaan tenaga kesehatan. Bila ragu dengan tumbuh kembang anak, segera konsultasikan ke posyandu atau puskesmas.</p></footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// chart
+const desc={"21.5":"2023: prevalensi stunting balita nasional 21,5% (SSGI).","19.8":"2024: prevalensi turun menjadi 19,8%, setara dengan sekitar 4,48 juta balita."};
+function showBar(b){$$(".bar").forEach(x=>x.setAttribute("aria-pressed",x===b));$("#bardesc").textContent=desc[b.dataset.v]}
+$$(".bar").forEach(b=>b.addEventListener("click",()=>showBar(b)));
+requestAnimationFrame(()=>setTimeout(()=>{$$(".bar").forEach(b=>b.querySelector("i").style.height=(b.dataset.v/30*100*0.78)+"%")},150));
+showBar($$(".bar")[1]);
+// compare
+$$("[data-c]").forEach(b=>b.addEventListener("click",()=>{$$("[data-c]").forEach(x=>x.setAttribute("aria-pressed",x===b));[...$("#cmp").children].forEach((d,i)=>d.classList.toggle("on",i==b.dataset.c))}));
+// causes
+const causes=[["Ibu","Usia, pendidikan, status gizi, tinggi badan, jarak kelahiran, anemia, dan infeksi saat hamil.","[3]"],["Rumah tangga","Pendapatan keluarga dan pendidikan ibu. Peningkatan aset rumah tangga juga berperan besar dalam perbaikan pertumbuhan anak.","[4][2]"],["Lingkungan","Sanitasi yang buruk dan buang air besar sembarangan.","[2]"],["Layanan kesehatan","Pemeriksaan kehamilan rutin dan persalinan dengan tenaga kesehatan.","[2]"],["Pengasuhan","ASI eksklusif dan praktik pemberian makan.","[3]"]];
+causes.forEach((c,i)=>{const b=document.createElement("button");b.textContent=c[0];b.setAttribute("aria-pressed",i==0);b.onclick=()=>{$$("#tabs button").forEach(x=>x.setAttribute("aria-pressed",x===b));$("#tabbody").innerHTML="<h3>"+c[0]+"</h3>"+c[1]+'<span class="ref">'+c[2]+"</span>"};$("#tabs").append(b)});
+$("#tabs button").click();
+// stages
+const st=[["Hamil","Periksa kehamilan rutin dan bersalin dengan tenaga kesehatan. Cegah anemia dan kurang gizi pada ibu hamil.","[2][3]"],["0–6 bulan","ASI eksklusif.","[3]"],["6–24 bulan","Pemberian makan yang tepat, disertai stimulasi anak.","[3][5]"]];
+function setStage(){const v=+$("#stage").value;[0,1,2].forEach(i=>$("#s"+i).classList.toggle("on",i==v));$("#stage").setAttribute("aria-valuetext",st[v][0]);$("#stagebody").innerHTML="<h3>"+st[v][0]+"</h3>"+st[v][1]+'<span class="ref">'+st[v][2]+"</span>"}
+$("#stage").addEventListener("input",setStage);setStage();
+// checklists
+function prog(id,out){const l=$$(id+" input"),f=()=>{const n=l.filter(x=>x.checked).length;$(out).textContent=n==0?"Belum ada yang dicentang.":n==l.length?"Semua selesai. Terima kasih sudah merawat tumbuh raga dan tumbuh jiwa.":n+" dari "+l.length+" sudah dilakukan."};l.forEach(x=>x.onchange=f);f()}
+prog("#chk1","#p1");prog("#chk2","#p2");
+// myths
+const my=[["“Pendek itu keturunan.”","Tinggi ibu memang berkaitan dengan risiko<span class=ref>[3]</span>, tetapi gizi, sanitasi, dan pengasuhan sangat berperan<span class=ref>[2]</span>."],["“Hanya karena kurang makan.”","Penyebabnya banyak<span class=ref>[1][4]</span>."],["“Pasti salah ibu.”","Tidak. Ekonomi, sanitasi, dan layanan kesehatan ikut menentukan<span class=ref>[2][4]</span>."],["“Pasti tidak pintar.”","Hubungannya belum sepasti itu<span class=ref>[5][6]</span>."]];
+my.forEach(m=>{const b=document.createElement("button");b.className="myth";b.setAttribute("aria-expanded","false");b.innerHTML="<strong>"+m[0]+'</strong><div class="fact"><b>Fakta:</b> '+m[1]+"</div>";b.onclick=()=>b.setAttribute("aria-expanded",b.getAttribute("aria-expanded")!="true");$("#myths").append(b)});
+</script>
+</body>
+</html>
